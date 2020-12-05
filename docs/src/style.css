@@ -1,51 +1,55 @@
 body {
   font-size: 20px;
   background-color: #eae7dc; 
-
+  margin: 1;
 }
+
 header{
   background-color: #d8c3a5;
- display: flex;
-flex-direction: column;
-align-items: center;
-border-style: solid;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-style: solid;
 }
-h1{
-color: #e85a4f;
+
+header h1{
+  color: #e85a4f;
 }
+
+h2{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+ /* Animation on page buttons */
 nav a{
-font-size: 20px;
-color : black;
-
-
+  font-size: 20px;
+  color : black;
 }
+
 nav li {
-display: inline-block;
-position: relative;
-margin-top: 0px;
-margin-right: 10px;
-margin-left: 10px;
-
+  display: inline-block;
+  position: relative;
+  margin-top: 0px;
+  margin-right: 10px;
+  margin-left: 10px;
 }
 
-nav a:hover {
-
+nav a::after {
+  content: '';
+  display: block;
+  height: 4px;
+  background-color:red;
+  position: absolute;
+  top: 10;
+  width: 0%;
+  transition: ease-in-out 300ms;
 }
 
-nav a::before {
-content: '';
-display: block;
-height: 5px;
-background-color: #e98084;
-
-position: absolute;
-top: 10;
-width: 0%;
-
-transition: all ease-in-out 250ms;
+nav a:hover::after {
+  width: 100%;
 }
 
-nav a:hover::before {
-width: 100%;
-}
+
 
