@@ -6,6 +6,16 @@ let settings = { method : "Get" };
 let policeValues = [];
 
 async function getData() {
+    let input = document.getElementById("crime").value;
+
+    // IF Statement for searching the type of CRIME
+    if (input == "ACCIDENT" || input == "THEFT FROM AUTO" || input == "THEFT" || input == "ASSAULT" || input == "ASSAULT, WEAPON" || input == "ASSAULT, SHOOTING" || input == "AUTO, STOLEN & RECOVERED"
+    || input == "SEX OFFENSE" || input == "AUTO, STOLEN" || input == "ROBBERY, OTHER" || input == "ROBBERY, COMMERCIAL" || input == "HOMOCIDE" || input == "VANDALISM" || input == "B & E, VACANT"
+    || input == "B & E, OTHER" || input == "B & E, RESIDENTIAL" || input == "B & E, COMMERCIAL" || input == "B & E, RESIDENTIAL (VACANT)") {
+    input.toUpperCase();
+    url += "clearance_code_inc_type=" + input;
+    }
+
     await fetch(url, settings)
             .then(res => res.json())
             .then((json) => {
