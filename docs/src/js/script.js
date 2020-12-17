@@ -8,15 +8,27 @@ let policeValues = [];
 async function getData() {
     let crime = document.getElementById("crime").value;
     let streetNumberInput = document.getElementById("streetNumber").value;
-    
+    let streetAddressInput = document.getElementById("streetAddress").value;
 
     // IF Statement for searching the type of CRIME
-    if (crime == "ACCIDENT" || crime == "THEFT FROM AUTO" || crime == "THEFT" || crime == "ASSAULT" || crime == "ASSAULT, WEAPON" || crime == "ASSAULT, SHOOTING" || crime == "AUTO, STOLEN & RECOVERED"
-    || crime == "SEX OFFENSE" || crime == "AUTO, STOLEN" || crime == "ROBBERY, OTHER" || crime == "ROBBERY, COMMERCIAL" || crime == "HOMOCIDE" || crime == "VANDALISM" || crime == "B & E, VACANT"
-    || crime == "B & E, OTHER" || crime == "B & E, RESIDENTIAL" || crime == "B & E, COMMERCIAL" || crime == "B & E, RESIDENTIAL (VACANT)") {
-    url += "clearance_code_inc_type=" + crime;
+    if (crime != "" && streetNumberInput != "" &&  streetAddressInput != "") { // Y Y Y 
+        url += "clearance_code_inc_type=" + crime + "&street_number=" + streetNumberInput + "&street_address=" + streetAddressInput;
+    }  else if (crime == "" && streetNumberInput != "" &&  streetAddressInput != "") { // N Y Y 
+        url += "street_number=" + streetNumberInput + "&street_address=" + streetAddressInput;
+    } else if (crime == "" && streetNumberInput == "" &&  streetAddressInput != "") { // N N Y 
+        url += "street_address=" + streetAddressInput;
+    } else if (crime != "" && streetNumberInput == "" &&  streetAddressInput != "") { // Y N Y 
+        url += "clearance_code_inc_type=" + crime + "&street_address=" + streetAddressInput;
+    } else if (crime != "" && streetNumberInput == "" &&  streetAddressInput == "") { // Y N N 
+        url += "clearance_code_inc_type=" + crime;
+    } else if (crime != "" && streetNumberInput != "" &&  streetAddressInput == "") { // Y Y N 
+        url += "clearance_code_inc_type=" + crime + "&street_number=" + streetNumberInput;
+    } else if (crime += "" && streetNumberInput != "" &&  streetAddressInput == "") { // N Y N 
+        url += "street_number=" + streetNumberInput;
+    } else { // N N N
+        url; 
     }
-
+    
     await fetch(url, settings)
             .then(res => res.json())
             .then((json) => {
@@ -38,3 +50,7 @@ async function getData() {
                 }
             })
 }
+
+/*(crime == "ACCIDENT" || crime == "THEFT FROM AUTO" || crime == "THEFT" || crime == "ASSAULT" || crime == "ASSAULT, WEAPON" || crime == "ASSAULT, SHOOTING" || crime == "AUTO, STOLEN & RECOVERED"
+    || crime == "SEX OFFENSE" || crime == "AUTO, STOLEN" || crime == "ROBBERY, OTHER" || crime == "ROBBERY, COMMERCIAL" || crime == "HOMOCIDE" || crime == "VANDALISM" || crime == "B & E, VACANT"
+    || crime == "B & E, OTHER" || crime == "B & E, RESIDENTIAL" || crime == "B & E, COMMERCIAL" || crime == "B & E, RESIDENTIAL (VACANT)") */
