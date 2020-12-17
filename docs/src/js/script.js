@@ -6,14 +6,15 @@ let settings = { method : "Get" };
 let policeValues = [];
 
 async function getData() {
-    let input = document.getElementById("crime").value;
+    let crime = document.getElementById("crime").value;
+    let streetNumberInput = document.getElementById("streetNumber").value;
+    
 
     // IF Statement for searching the type of CRIME
-    if (input == "ACCIDENT" || input == "THEFT FROM AUTO" || input == "THEFT" || input == "ASSAULT" || input == "ASSAULT, WEAPON" || input == "ASSAULT, SHOOTING" || input == "AUTO, STOLEN & RECOVERED"
-    || input == "SEX OFFENSE" || input == "AUTO, STOLEN" || input == "ROBBERY, OTHER" || input == "ROBBERY, COMMERCIAL" || input == "HOMOCIDE" || input == "VANDALISM" || input == "B & E, VACANT"
-    || input == "B & E, OTHER" || input == "B & E, RESIDENTIAL" || input == "B & E, COMMERCIAL" || input == "B & E, RESIDENTIAL (VACANT)") {
-    input.toUpperCase();
-    url += "clearance_code_inc_type=" + input;
+    if (crime == "ACCIDENT" || crime == "THEFT FROM AUTO" || crime == "THEFT" || crime == "ASSAULT" || crime == "ASSAULT, WEAPON" || crime == "ASSAULT, SHOOTING" || crime == "AUTO, STOLEN & RECOVERED"
+    || crime == "SEX OFFENSE" || crime == "AUTO, STOLEN" || crime == "ROBBERY, OTHER" || crime == "ROBBERY, COMMERCIAL" || crime == "HOMOCIDE" || crime == "VANDALISM" || crime == "B & E, VACANT"
+    || crime == "B & E, OTHER" || crime == "B & E, RESIDENTIAL" || crime == "B & E, COMMERCIAL" || crime == "B & E, RESIDENTIAL (VACANT)") {
+    url += "clearance_code_inc_type=" + crime;
     }
 
     await fetch(url, settings)

@@ -26,8 +26,10 @@
     </header>
     <ul id="policeList">
     </ul>
-    <br>
-    <input type="text" id="crime" name="crime" /><br /><br />
+    <br> <!-- These buttons automatically uppercase the input so dont chaneg the onkeyup part -->
+    <input type="text" id="crime" onkeyup="this.value = this.value.toUpperCase();"><br /><br />
+    <input type="text" id="streetNumber" onkeyup="this.value = this.value.toUpperCase();"><br /><br />
+    <input type="text" id="streetAddress" onkeyup="this.value = this.value.toUpperCase();"><br /><br />
     <button onclick="getData()">Get Data</button><br /><br />
   </body>
 </html>
