@@ -1,42 +1,36 @@
 let url = "https://data.princegeorgescountymd.gov/resource/wb4e-w4nf.json?";
-let police = "";
+let fetchUrl = "https://data.princegeorgescountymd.gov/resource/wb4e-w4nf.json?";
 console.log(url);
 
 let settings = { method : "Get" };
-let policeValues = [];
 
 async function getData() {
-    let crime = document.getElementById("crime").value;
-    let streetNumberInput = document.getElementById("streetNumber").value;
-    let streetAddressInput = document.getElementById("streetAddress").value;
+    var crime = document.getElementById("crime").value; // inputs being created into variables
+    var streetNumberInput = document.getElementById("streetNumber").value;
+    var streetAddressInput = document.getElementById("streetAddress").value;
+    var array = new Array (); // array of inputs with their URL JSON filters
+    array[0] = ["clearance_code_inc_type=", crime];
+    array[1] = ["street_number=", streetNumberInput];
+    array[2] = ["street_address=", streetAddressInput];
 
-    // IF Statement for searching the type of CRIME
-    if (crime != "" && streetNumberInput != "" &&  streetAddressInput != "") { // Y Y Y 
-        url += "clearance_code_inc_type=" + crime + "&street_number=" + streetNumberInput + "&street_address=" + streetAddressInput;
-    }  else if (crime == "" && streetNumberInput != "" &&  streetAddressInput != "") { // N Y Y 
-        url += "street_number=" + streetNumberInput + "&street_address=" + streetAddressInput;
-    } else if (crime == "" && streetNumberInput == "" &&  streetAddressInput != "") { // N N Y 
-        url += "street_address=" + streetAddressInput;
-    } else if (crime != "" && streetNumberInput == "" &&  streetAddressInput != "") { // Y N Y 
-        url += "clearance_code_inc_type=" + crime + "&street_address=" + streetAddressInput;
-    } else if (crime != "" && streetNumberInput == "" &&  streetAddressInput == "") { // Y N N 
-        url += "clearance_code_inc_type=" + crime;
-    } else if (crime != "" && streetNumberInput != "" &&  streetAddressInput == "") { // Y Y N 
-        url += "clearance_code_inc_type=" + crime + "&street_number=" + streetNumberInput;
-    } else if (crime += "" && streetNumberInput != "" &&  streetAddressInput == "") { // N Y N 
-        url += "street_number=" + streetNumberInput;
-    } else { // N N N
-        url; 
+    for(i = 0; i < array.length; i++){ // for loop to add the URL JSON filters to the fetchURL
+        if (array[i][1] == "") {
+            fetchUrl;
+        } else if (array[i][1] != "" && fetchUrl.length > url.length){
+            fetchUrl += "&" + array[i][0] + array[i][1];
+        } else {
+            fetchUrl += array[i][0] + array[i][1];
+        }
     }
-    
-    await fetch(url, settings)
+
+    await fetch(fetchUrl, settings)
             .then(res => res.json())
             .then((json) => {
                 let listSize = json.length;
                 console.log(listSize)
                 // Loop to pick all the data
-                for (x = 0; x < listSize; x++) {
-                    let post = json[x];
+                for (i = 0; i < listSize; i++) {
+                    let post = json[i];
                     console.log(post)
                     let streetNumber = post.street_number;
                     let streetAddress = post.street_address;
@@ -50,7 +44,3 @@ async function getData() {
                 }
             })
 }
-
-/*(crime == "ACCIDENT" || crime == "THEFT FROM AUTO" || crime == "THEFT" || crime == "ASSAULT" || crime == "ASSAULT, WEAPON" || crime == "ASSAULT, SHOOTING" || crime == "AUTO, STOLEN & RECOVERED"
-    || crime == "SEX OFFENSE" || crime == "AUTO, STOLEN" || crime == "ROBBERY, OTHER" || crime == "ROBBERY, COMMERCIAL" || crime == "HOMOCIDE" || crime == "VANDALISM" || crime == "B & E, VACANT"
-    || crime == "B & E, OTHER" || crime == "B & E, RESIDENTIAL" || crime == "B & E, COMMERCIAL" || crime == "B & E, RESIDENTIAL (VACANT)") */
