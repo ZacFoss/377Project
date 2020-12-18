@@ -35,8 +35,8 @@ async function getData() {
                     let streetNumber = post.street_number;
                     let streetAddress = post.street_address;
                     let clearanceCode = post.clearance_code_inc_type;
-                    let message = "<b>Crime </b>: " + clearanceCode + " <b>Street Number</b>:" + streetNumber
-                    + "<b>Street Address</b>: " + streetAddress;
+                    let message = "<b>Crime </b>: " + clearanceCode + " <b> Street Number</b>:" + streetNumber
+                    + "<b> Street Address</b>: " + streetAddress;
 
                     let select = document.getElementById("policeList");
                     select.innerHTML += "<li>" + message + "</li>";
