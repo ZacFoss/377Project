@@ -50,6 +50,25 @@ label{
   
 }
 
+.image{
+  display:flex;
+  justify-content: center;
+  
+ 
+  position: relative;
+  animation-name: image;
+  animation-duration: 4s;
+
+}
+
+@keyframes image {
+  0%   {left:0px; top:0px;}
+  25%  {left:150px; top:0px;}
+  50%  {left:150px; top:150px;}
+  75%  {left:0px; top:150px;}
+  100% {left:0px; top:0px;}
+
+}
 
 header h1{
   color: #ffc400;
