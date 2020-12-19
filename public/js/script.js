@@ -8,22 +8,11 @@ async function getData() {
     var crime = document.getElementById("crime").value; // inputs being created into variables
     var streetNumberInput = document.getElementById("streetNumber").value;
     var streetAddressInput = document.getElementById("streetAddress").value;
-<<<<<<< HEAD
-
-    var array = new Array (); // array of inputs with their URL JSON filters
-    
-    if (crime.includes("B & E,") )
-    {
-        array[0] = ["$where=clearance_code_inc_type like", "'%25" + crime.substr(5) + "%25'"];
-        array[1] = ["street_number=", streetNumberInput];
-        array[2] = ["street_address=", streetAddressInput];
-=======
     var inputArray = new Array (); // array of inputs with their URL JSON filters
     if (crime.includes("B & E,") ){
         inputArray[0] = ["$where=clearance_code_inc_type like", "'%25" + crime.substr(5) + "%25'"];
         inputArray[1] = ["street_number=", streetNumberInput];
         inputArray[2] = ["street_address=", streetAddressInput];
->>>>>>> 003b91d97d7e2ea4036fbc0f9c960573550539c6
     } else {
         inputArray[0] = ["clearance_code_inc_type=", crime];
         inputArray[1] = ["street_number=", streetNumberInput];
