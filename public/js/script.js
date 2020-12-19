@@ -9,9 +9,15 @@ async function getData() {
     var streetNumberInput = document.getElementById("streetNumber").value;
     var streetAddressInput = document.getElementById("streetAddress").value;
     var array = new Array (); // array of inputs with their URL JSON filters
-    array[0] = ["clearance_code_inc_type=", crime];
-    array[1] = ["street_number=", streetNumberInput];
-    array[2] = ["street_address=", streetAddressInput];
+    if (crime.includes("B & E,") ){
+        array[0] = ["$where=clearance_code_inc_type like", "'%25" + crime.substr(5) + "%25'"];
+        array[1] = ["street_number=", streetNumberInput];
+        array[2] = ["street_address=", streetAddressInput];
+    } else {
+        array[0] = ["clearance_code_inc_type=", crime];
+        array[1] = ["street_number=", streetNumberInput];
+        array[2] = ["street_address=", streetAddressInput];
+    }
 
     for(i = 0; i < array.length; i++){ // for loop to add the URL JSON filters to the fetchURL
         if (array[i][1] == "") {
@@ -28,19 +34,19 @@ async function getData() {
             .then((json) => {
                 let listSize = json.length;
                 console.log(listSize)
+                var array = new Array ();
                 // Loop to pick all the data
                 for (i = 0; i < listSize; i++) {
                     let post = json[i];
                     console.log(post)
+                    let clearanceCode = post.clearance_code_inc_type;
                     let streetNumber = post.street_number;
                     let streetAddress = post.street_address;
-                    let clearanceCode = post.clearance_code_inc_type;
-                    let message = "<b>Crime </b>: " + clearanceCode + " <b> Street Number</b>:" + streetNumber
-                    + "<b> Street Address</b>: " + streetAddress;
-
-                    let select = document.getElementById("policeList");
-                    select.innerHTML += "<li>" + message + "</li>";
+                    array[i] = [clearanceCode, streetNumber, streetAddress];
 
                 }
+                let message = array.length + " cases of " + crime + " happened at " + streetNumberInput + ", " + streetAddressInput;
+                let select = document.getElementById("policeList"); 
+                select.innerHTML += "<li>" + message + "</li>";
             })
 }
