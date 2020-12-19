@@ -8,18 +8,24 @@ async function getData() {
     var crime = document.getElementById("crime").value; // inputs being created into variables
     var streetNumberInput = document.getElementById("streetNumber").value;
     var streetAddressInput = document.getElementById("streetAddress").value;
-    var array = new Array (); // array of inputs with their URL JSON filters
-    array[0] = ["clearance_code_inc_type=", crime];
-    array[1] = ["street_number=", streetNumberInput];
-    array[2] = ["street_address=", streetAddressInput];
+    var inputArray = new Array (); // array of inputs with their URL JSON filters
+    if (crime.includes("B & E,") ){
+        inputArray[0] = ["$where=clearance_code_inc_type like", "'%25" + crime.substr(5) + "%25'"];
+        inputArray[1] = ["street_number=", streetNumberInput];
+        inputArray[2] = ["street_address=", streetAddressInput];
+    } else {
+        inputArray[0] = ["clearance_code_inc_type=", crime];
+        inputArray[1] = ["street_number=", streetNumberInput];
+        inputArray[2] = ["street_address=", streetAddressInput];
+    }
 
-    for(i = 0; i < array.length; i++){ // for loop to add the URL JSON filters to the fetchURL
-        if (array[i][1] == "") {
+    for(i = 0; i < inputArray.length; i++){ // for loop to add the URL JSON filters to the fetchURL
+        if (inputArray[i][1] == "") {
             fetchUrl;
-        } else if (array[i][1] != "" && fetchUrl.length > url.length){
-            fetchUrl += "&" + array[i][0] + array[i][1];
+        } else if (inputArray[i][1] != "" && fetchUrl.length > url.length){
+            fetchUrl += "&" + inputArray[i][0] + inputArray[i][1];
         } else {
-            fetchUrl += array[i][0] + array[i][1];
+            fetchUrl += inputArray[i][0] + inputArray[i][1];
         }
     }
 
@@ -28,19 +34,35 @@ async function getData() {
             .then((json) => {
                 let listSize = json.length;
                 console.log(listSize)
+                var array = new Array ();
+                var message = "";
                 // Loop to pick all the data
                 for (i = 0; i < listSize; i++) {
                     let post = json[i];
                     console.log(post)
+                    let clearanceCode = post.clearance_code_inc_type;
                     let streetNumber = post.street_number;
                     let streetAddress = post.street_address;
-                    let clearanceCode = post.clearance_code_inc_type;
-                    let message = "<b>Crime </b>: " + clearanceCode + " <b> Street Number</b>:" + streetNumber
-                    + "<b> Street Address</b>: " + streetAddress;
-
-                    let select = document.getElementById("policeList");
-                    select.innerHTML += "<li>" + message + "</li>";
+                    array[i] = [clearanceCode, streetNumber, streetAddress];
 
                 }
+                
+                if (crime != "" && streetNumberInput != "" && streetAddressInput != ""){
+                    message = array.length + " cases of " + crime + " happened at " + streetNumberInput + ", " + streetAddressInput;
+                } else if (crime != "" && streetNumberInput != "" && streetAddressInput == "") {
+                    message = array.length + " cases of " + crime + " happened at " + streetNumberInput;
+                } else if (crime != "" && streetAddressInput != "" && streetNumberInput == "") {
+                    message = array.length + " cases of " + crime + " happened at " + streetAddressInput;
+                } else if (streetNumberInput != "" && streetAddressInput != "" && crime == "") {
+                    message = array.length + " cases happened at " + streetNumberInput + ", " + streetAddressInput;
+                } else if (crime != "" && streetAddressInput == "" && streetNumberInput == "") {
+                    message = array.length + " cases of " + crime + " happened in PG County"
+                } else if (streetNumberInput != "" && crime == "" && streetAddressInput == "") {
+                    message = array.length + " cases occurred at " + streetNumberInput;
+                } else if (streetAddressInput != "" && crime == "" && streetNumberInput == "") {
+                    message = array.length + " cases occurred at " + streetAddressInput;
+                }
+                let select = document.getElementById("policeList"); 
+                select.innerHTML += "<li>" + message + "</li>";
             })
 }
