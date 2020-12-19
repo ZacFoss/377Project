@@ -1,11 +1,11 @@
 body {
   font-size: 20px;
-  background-color: #eae7dc; 
+  background-color: #ffbb00; 
   margin: 1;
 }
 
 header{
-  background-color: #d8c3a5;
+  background-color: #7c0a00;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -42,7 +42,7 @@ label{
 
 
 header h1{
-  color: #e85a4f;
+  color: #ffc400;
 }
 
 h2{
@@ -54,7 +54,7 @@ h2{
  /* Animation on page buttons */
 nav a{
   font-size: 20px;
-  color : black;
+  color : rgb(217, 163, 0);
 }
 
 nav li {
@@ -69,7 +69,7 @@ nav a::after {
   content: '';
   display: block;
   height: 4px;
-  background-color:red;
+  background-color:rgb(255, 255, 255);
   position: absolute;
   top: 10;
   width: 0%;
