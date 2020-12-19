@@ -27,17 +27,43 @@
 
     <div class = "content">
      <!-- These buttons automatically uppercase the input so dont chaneg the onkeyup part -->
-      <label for="crime">Crime</label>
-      <input type="text" id="crime" onkeyup="this.value = this.value.toUpperCase();">
+      <label for="crime">Crime Type:</label>
+      <select id="crime" onkeyup="this.value = this.value.toUpperCase();">
+        <option value = "ACCIDENT">Accident</option>
+        <option value = "ACCIDENT WITH IMPOUND">ACCIDENT WITH IMPOUND</option>
+        <option value = "ASSAULT">ASSAULT</option>
+        <option value = "ASSAULT, SHOOTING">ASSAULT, SHOOTING</option>
+        <option value = "ASSAULT, WEAPON">ASSAULT, WEAPON</option>
+        <option value = "AUTO, STOLEN">AUTO, STOLEN</option>
+        <option value = "AUTO, STOLEN & RECOVERED">AUTO, STOLEN & RECOVERED</option>
+        <option value = "B & E, COMMERCIAL">B & E, COMMERCIAL</option>
+        <option value = "B & E, OTHER">B & E, OTHER</option>
+        <option value = "B & E, RESIDENTIAL">B & E, RESIDENTIAL</option>
+        <option value = "B & E, RESIDENTIAL (VACANT)">B & E, RESIDENTIAL (VACANT)</option>
+        <option value = "B & E, SCHOOL">B & E, SCHOOL</option>
+        <option value = "B & E, VACANT">B & E, VACANT</option>
+        <option value = "HOMICIDE">HOMICIDE</option>
+        <option value = "ROBBERY, COMMERCIAL">ROBBERY, COMMERCIAL</option>
+        <option value = "ROBBERY, OTHER">ROBBERY, OTHER</option>
+        <option value = "ROBBERY, RESIDENTIAL">ROBBERY, RESIDENTIAL</option>
+        <option value = "ROBBERY, VEHICLE">ROBBERY, VEHICLE</option>
+        <option value = "SEX OFFENSE">SEX OFFENSE</option>
+        <option value = "THEFT">Theft</option>
+        <option value = "THEFT FROM AUTO">THEFT FROM AUTO</option>
+        <option value = "VANDALISM">VANDALISM</option>
+      </select>
 
-      <label for="Street Number">Street Number</label>
+      <br><label for="Street Number">Street Number:</label><br>
       <input type="text" id="streetNumber" onkeyup="this.value = this.value.toUpperCase();">
 
-      <label for="streetAddress">Street Address</label>
+      <label for="streetAddress">Street Address:</label>
       <input type="text" id="streetAddress" onkeyup="this.value = this.value.toUpperCase();">
-      
-      <button onclick="getData()">Get Data</button><br>
+    
     </div>
+    
+    <div class = "button">
+      <button onclick="getData()">Get Data</button>
+      </div>
     
     <ul id="policeList"></ul>
 
