@@ -11,7 +11,8 @@ Our chosen strategy was to create a working search application that will provide
 
 For our technical system we decided to mostly use HTML, JavaScript, and CSS. We wanted to use the HTML and CSS for the structure and design of our web page. We used JavaScript for all of the functionality.
 We are also using Node.js to host the server. 
-Our final system is a step in the right direction for addressing the problem. It may not entirely solve the problem however our goal of providing the data to the users so they can make their own decisions on it was successful. 
+Our final system is a step in the right direction for addressing the problem. It may not entirely solve the problem however, our goal of providing the data to the users so they can make their own decisions on it was successful. 
 
-The main challenge we faced was getting all of the data from the database. The JSON that we were receiving was only returning 1000 entries from the database and this forced us to spend copious amounts of time on this issue without figuring it out. 
-Our future direction with this problem is figuring out how to get all of the data and possibly creating our own database to store it. 
+The main challenge we faced was getting all of the data from the database. The JSON that we were receiving was only returning 1000 entries from the database and this forced us to spend copious amounts of time on this issue without figuring it out.The other issue was that the only way to access the functionality of the website after going through one occurence, was by refreshing it.
+ 
+Our future direction with this problem is figuring out how to get all of the data and possibly creating our own database to store it. For future direction of the project overall we would improve the user experience, providing more functionality such as easy search suggestions showing up whilst typing the street address, and possibly expanding the dataset for crime occuring in all of Maryland at minimum (or throughout the country at maximum).
