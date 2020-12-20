@@ -1,5 +1,5 @@
 Make PG, PG again
-Jonathan Santilma, Zac Foss, Ricardo Hernandez, Wei Ming Liane, Jessie Castor
+Johnathan Saintilma, Zac Foss, Ricardo Hernandez, Wei Ming Liane, Jessie Castor
 
 Prince George's County continues to have the second highest crime rate in the state of Maryland. However there are very few tools that provide residents and visitors the ability to check these statistics and utilize the data. So the problem we are trying to solve is "How do PG County residents become more aware of the crime incidents that happen in their area in order to make sure they can stay safe?". 
 
